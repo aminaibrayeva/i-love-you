@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amina ♡ Martin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="hearts"></div>
+
+<main>
+    <section class="hero">
+        <div class="eyebrow">Мое первое творчество и я решила посвятить...</div>
+        <h1>Для тебя,<br><span>мой котенок.</span></h1>
+        <p class="subtitle">Потому что иногда одного сообщения недостаточно.</p>
+
+        <div class="photo-wrap">
+            <div class="tape"></div>
+            <img src="1.jpg.jpg" alt="Amina & Martin">
+        </div>
+
+        <div class="names">AMINA <span>♡</span> MARTIN</div>
+        <div class="scroll">↓ листай дальше ↓</div>
+    </section>
+
+    <section class="counter-section">
+        <p class="label">до 24 декабря 2026</p>
+        <h2>До нашей встречи осталось</h2>
+
+        <div class="countdown">
+            <div><strong id="days">00</strong><small>дней</small></div>
+            <div><strong id="hours">00</strong><small>часов</small></div>
+            <div><strong id="minutes">00</strong><small>минут</small></div>
+            <div><strong id="seconds">00</strong><small>секунд</small></div>
+        </div>
+
+    </section>
+
+    <section class="letter">
+        <div class="section-number">01</div>
+        <h2>Письмо тебе</h2>
+
+        <div class="paper">
+            <p>Мой малыш,</p>
+            <p>
+                я решила посвятить тебе этот сайт, потому-что...
+                Между нами сейчас километры, экраны и ожидание.
+                Но несмотря на это, ты стал человеком, о котором мне
+                хочется думать утром и перед сном. Ждать нашу первую встречу
+                каждый день...
+                Я очень жду момента, когда всё это ожидание закончится.
+                Когда мне не придётся смотреть на тебя через экран,
+                а можно будет просто взять тебя за руку и целовать в губы.
+            </p>
+            <p class="signature">Твоя пандочка ♡</p>
+        </div>
+    </section>
+
+    <section class="timeline">
+        <div class="section-number">02</div>
+        <h2>И однажды...</h2>
+
+        <div class="timeline-item">
+            <span>01</span>
+            <div>
+                <h3>Мы наконец встретимся</h3>
+                <p>Без экрана между нами. Между нами будет наша любовь.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <span>02</span>
+            <div>
+                <h3>Будем гулять веееесь день</h3>
+                <p>И мне, скорее всего, всё ещё будет мало времени рядом с тобой.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <span>03</span>
+            <div>
+                <h3>Будем создавать свои воспоминания</h3>
+                <p>Не в переписке. Не на фотографиях. А по-настоящему. Поцелуи, обнимашки ииии... хихихи</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="final">
+        <div class="glow-heart">♡</div>
+        <p class="label">самое главное</p>
+        <h2>Я тебя жду.</h2>
+        <p>
+            И очень хочу, чтобы наш следующий Новый год 2028<br>
+            был уже не на расстоянии. А мы вместе отмечали в нашей собственной квартире.
+        </p>
+
+        <button id="surpriseBtn">Открыть маленький секрет ♡</button>
+
+        <div id="secret" class="secret">
+            <div class="secret-heart">♥</div>
+            <h3>Ой! Узнаешь 24 декабря, хихи</h3>
+           
+        </div>
+    </section>
+
+    <footer>
+        Создано лично Пандочкой!!!! ^^
+    </footer>
+</main>
+
+<script>
+    const target = new Date("2026-12-24T00:00:00+01:00").getTime();
+
+    function updateCountdown() {
+        const now = Date.now();
+        const distance = target - now;
+
+        if (distance <= 0) {
+            document.querySelector(".counter-section h2").textContent = "Мы встретились ♡";
+            ["days","hours","minutes","seconds"].forEach(id => {
+                document.getElementById(id).textContent = "♡";
+            });
+            return;
+        }
+
+        const days = Math.floor(distance / 86400000);
+        const hours = Math.floor((distance % 86400000) / 3600000);
+        const minutes = Math.floor((distance % 3600000) / 60000);
+        const seconds = Math.floor((distance % 60000) / 1000);
+
+        document.getElementById("days").textContent = String(days).padStart(2,"0");
+        document.getElementById("hours").textContent = String(hours).padStart(2,"0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
+        document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const btn = document.getElementById("surpriseBtn");
+    const secret = document.getElementById("secret");
+
+    btn.addEventListener("click", () => {
+        secret.classList.toggle("show");
+        btn.textContent = secret.classList.contains("show")
+            ? "♡"
+            : "Открыть маленький секрет ♡";
+    });
+
+    function createHeart() {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent = Math.random() > .5 ? "♡" : "·";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+        heart.style.fontSize = (10 + Math.random() * 16) + "px";
+        document.querySelector(".hearts").appendChild(heart);
+        setTimeout(() => heart.remove(), 11000);
+    }
+
+    setInterval(createHeart, 900);
+</script>
+</body>
+</html>
